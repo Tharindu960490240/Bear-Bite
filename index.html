@@ -2,165 +2,477 @@
 <html lang="en" data-theme="light">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Bear Bite | Order by phone</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <title>Bear Bite | Fresh Gourmet Burgers & Bites in Boralesgamuwa</title>
     <meta
       name="description"
-      content="Bear Bite menu. Call us to place your order."
+      content="Savor handcrafted burgers, crispy bites, desserts, and milkshakes at Bear Bite in Boralesgamuwa. Order ahead for quick pickup!"
     />
+    <link rel="icon" href="logo.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Figtree:wght@400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="icon" href="logo.png" />
     <link rel="stylesheet" href="style.css" />
     <script>
       try {
-        var t = localStorage.getItem("bb-theme");
-        if (t) document.documentElement.dataset.theme = t;
+        const theme =
+          localStorage.getItem("bb-theme") ||
+          (window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light");
+        document.documentElement.dataset.theme = theme;
       } catch (e) {}
     </script>
   </head>
   <body>
+    <!-- TOP NAVIGATION BAR -->
     <header class="nav" id="nav">
-      <a href="#top" class="brand" aria-label="Bear Bite home"
-        ><img
-          src="logo.png"
-          alt=""
-          class="brand-logo"
-          width="48"
-          height="48"
-        /><span>Bear Bite</span></a
-      >
-      <nav aria-label="Main">
-        <a href="#menu">Menu</a><a href="#how">How to order</a
-        ><a href="#visit">Visit</a>
+      <a href="#top" class="brand" aria-label="Bear Bite Home">
+        <div class="brand-logo-wrapper">
+          <img
+            src="logo.png"
+            alt="Bear Bite Logo"
+            class="brand-logo"
+            width="42"
+            height="42"
+          />
+        </div>
+        <span class="brand-name">Bear Bite</span>
+      </a>
+
+      <nav aria-label="Main Navigation">
+        <a href="#menu">Menu</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#how">How to Order</a>
+        <a href="#visit">Visit Us</a>
       </nav>
+
       <div class="nav-actions">
-        <button class="theme" id="themeBtn" aria-label="Switch theme">
+        <button class="theme" id="themeBtn" aria-label="Toggle dark mode">
           <svg
+            class="sun"
             viewBox="0 0 24 24"
             width="20"
             height="20"
             fill="none"
             stroke="currentColor"
-            stroke-width="2"
+            stroke-width="2.2"
             stroke-linecap="round"
+            stroke-linejoin="round"
           >
-            <circle class="sun" cx="12" cy="12" r="4" />
-            <path
-              class="sun"
-              d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"
-            />
-            <path class="moon" d="M21 13a9 9 0 1 1-10-10 7 7 0 0 0 10 10z" />
+            <circle cx="12" cy="12" r="5" />
+            <line x1="12" y1="1" x2="12" y2="3" />
+            <line x1="12" y1="21" x2="12" y2="23" />
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+            <line x1="1" y1="12" x2="3" y2="12" />
+            <line x1="21" y1="12" x2="23" y2="12" />
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+          </svg>
+          <svg
+            class="moon"
+            viewBox="0 0 24 24"
+            width="20"
+            height="20"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
           </svg>
         </button>
-        <a class="btn btn-sm" data-phone href="tel:">Call</a>
+        <a class="btn btn-sm btn-call" data-phone href="tel:">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+            <path
+              d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11 11 0 0 0 3.6.6 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.6 3.6a1 1 0 0 1-.25 1z"
+            />
+          </svg>
+          <span>Call Now</span>
+        </a>
       </div>
     </header>
 
     <main id="top">
+      <!-- HERO SECTION -->
       <section class="hero">
-        <div class="hero-text">
-          <p class="pill">Order by phone, ready fast</p>
-          <h1>Bite into goodness.</h1>
-          <p class="lead">
-            Pick from the menu below, then ring us. We take your order, you pick
-            it up hot.
+        <div class="hero-card">
+          <div class="hero-text">
+            <div class="badge-status" id="storeStatusBadge">
+              <span class="status-dot"></span>
+              <span class="status-text" id="statusText"
+                >Open Today • 10:00 AM - 9:00 PM</span
+              >
+            </div>
+            <h1>Bite into <span>goodness.</span></h1>
+            <p class="lead">
+              Handcrafted burgers, golden crispy sides, and thick milkshakes.
+              Call ahead to place your order, and pick it up fresh off the
+              grill.
+            </p>
+            <div class="cta-row">
+              <a class="btn btn-lg btn-primary" data-phone href="tel:">
+                <svg
+                  viewBox="0 0 24 24"
+                  width="20"
+                  height="20"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11 11 0 0 0 3.6.6 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.6 3.6a1 1 0 0 1-.25 1z"
+                  />
+                </svg>
+                <span data-phone-text>+94 77 212 6006</span>
+              </a>
+              <a class="btn btn-lg btn-ghost" href="#menu">
+                <span>Explore Menu</span>
+                <svg
+                  viewBox="0 0 24 24"
+                  width="18"
+                  height="18"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                >
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </a>
+            </div>
+
+            <div class="hero-stats">
+              <div class="stat-item">
+                <strong>4.9 ★</strong>
+                <span>Customer Rating</span>
+              </div>
+              <div class="stat-divider"></div>
+              <div class="stat-item">
+                <strong>15 Min</strong>
+                <span>Avg. Pickup Time</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-art">
+            <div class="glow-backdrop" aria-hidden="true"></div>
+            <div class="blob-shape" aria-hidden="true"></div>
+            <img
+              class="hero-logo"
+              src="logo.png"
+              alt="Bear Bite mascot: happy bear eating from a bowl"
+            />
+            <div class="floating-chip c1">
+              <span class="chip-icon">🔥</span> Fresh & Ready
+            </div>
+            <div class="floating-chip c2">
+              <span class="chip-icon">⚡</span> Quick Pickup
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- INFINITE MARQUEE BANNER -->
+      <div class="marquee" aria-hidden="true">
+        <div class="marquee-content">
+          <span>Freshly Made Burgers</span><span>•</span>
+          <span>Call & Pick Up</span><span>•</span> <span>Boralesgamuwa</span
+          ><span>•</span> <span>Bear Bite Goodness</span><span>•</span>
+          <span>Hot Crispy Fries</span><span>•</span>
+          <span>Rich Milkshakes</span><span>•</span>
+          <span>Freshly Made Burgers</span><span>•</span>
+          <span>Call & Pick Up</span><span>•</span> <span>Boralesgamuwa</span
+          ><span>•</span> <span>Bear Bite Goodness</span><span>•</span>
+        </div>
+      </div>
+
+      <!-- MENU SECTION -->
+      <section class="section" id="menu">
+        <div class="section-head">
+          <div>
+            <span class="section-tag">Delicious Choices</span>
+            <h2>Our Menu</h2>
+          </div>
+          <p class="section-sub">
+            Made to order with fresh ingredients. Tap any category to explore.
           </p>
-          <div class="cta-row">
-            <a class="btn" data-phone href="tel:"
-              ><svg
+        </div>
+
+        <div
+          class="tabs-container"
+          id="tabs"
+          role="tablist"
+          aria-label="Menu categories"
+        ></div>
+
+        <div class="menu-grid" id="menuGrid" role="tabpanel"></div>
+
+        <div class="menu-footer-note">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+            <path
+              d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"
+            />
+          </svg>
+          <span
+            >Prices are subject to change. Ask about today's daily specials when
+            calling!</span
+          >
+        </div>
+      </section>
+
+      <!-- GALLERY SECTION -->
+      <section class="section" id="gallery">
+        <div class="section-head">
+          <div>
+            <span class="section-tag">Visual Feast</span>
+            <h2>Gallery</h2>
+          </div>
+          <div class="gallery-controls">
+            <button id="prev" aria-label="Previous photo">
+              <svg
+                viewBox="0 0 24 24"
+                width="20"
+                height="20"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+              >
+                <path d="M19 12H5M12 19l-7-7 7-7" />
+              </svg>
+            </button>
+            <button id="next" aria-label="Next photo">
+              <svg
+                viewBox="0 0 24 24"
+                width="20"
+                height="20"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+              >
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div
+          class="gallery-track"
+          id="galTrack"
+          tabindex="0"
+          aria-label="Photo gallery"
+        ></div>
+        <div class="gallery-dots" id="galDots"></div>
+      </section>
+
+      <!-- HOW TO ORDER SECTION -->
+      <section class="section" id="how">
+        <div class="section-head center">
+          <span class="section-tag">Quick & Easy</span>
+          <h2>Order in 3 Simple Steps</h2>
+        </div>
+
+        <div class="steps-grid">
+          <div class="step-card">
+            <div class="step-num">01</div>
+            <h3>Choose</h3>
+            <p>
+              Explore our menu and pick your favorite burgers, sides, and
+              drinks.
+            </p>
+          </div>
+          <div class="step-card">
+            <div class="step-num">02</div>
+            <h3>Call Us</h3>
+            <p>
+              Tap the call button or dial
+              <strong data-phone-text>+94 77 212 6006</strong> to place your
+              order directly with our staff.
+            </p>
+          </div>
+          <div class="step-card">
+            <div class="step-num">03</div>
+            <h3>Pick Up Fresh</h3>
+            <p>
+              Head over to Bear Bite. Your meal will be freshly cooked and
+              packaged ready for takeaway.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- VISIT US SECTION -->
+      <section class="section visit-section" id="visit">
+        <div class="visit-grid">
+          <div class="info-card">
+            <span class="section-tag">Find Us</span>
+            <h2>Visit Bear Bite</h2>
+
+            <dl class="contact-details">
+              <div class="detail-row">
+                <dt>
+                  <svg
+                    viewBox="0 0 24 24"
+                    width="20"
+                    height="20"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11 11 0 0 0 3.6.6 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.6 3.6a1 1 0 0 1-.25 1z"
+                    />
+                  </svg>
+                  Phone
+                </dt>
+                <dd>
+                  <a data-phone href="tel:"
+                    ><strong data-phone-text></strong
+                  ></a>
+                </dd>
+              </div>
+
+              <div class="detail-row">
+                <dt>
+                  <svg
+                    viewBox="0 0 24 24"
+                    width="20"
+                    height="20"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 0 1 0-5 2.5 2.5 0 0 1 0 5z"
+                    />
+                  </svg>
+                  Address
+                </dt>
+                <dd id="addr"></dd>
+              </div>
+
+              <div class="detail-row">
+                <dt>
+                  <svg
+                    viewBox="0 0 24 24"
+                    width="20"
+                    height="20"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"
+                    />
+                  </svg>
+                  Opening Hours
+                </dt>
+                <dd id="hours"></dd>
+              </div>
+
+              <div class="detail-row">
+                <dt>
+                  <svg
+                    viewBox="0 0 24 24"
+                    width="20"
+                    height="20"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H7.5v-3H10V9.5C10 7.01 11.49 5.6 13.78 5.6c1.1 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.77l-.44 3h-2.33v6.8c4.56-.93 8-4.96 8-9.8z"
+                    />
+                  </svg>
+                  Facebook
+                </dt>
+                <dd>
+                  <a id="fb" target="_blank" rel="noopener"
+                    >Connect on Facebook ↗</a
+                  >
+                </dd>
+              </div>
+            </dl>
+          </div>
+
+          <a class="callcard" data-phone href="tel:">
+            <div class="callcard-badge">Order Takeaway</div>
+            <div class="callcard-main">
+              <span>Hungry now?</span>
+              <strong data-phone-text>+94 77 212 6006</strong>
+            </div>
+            <div class="callcard-btn">
+              <span>Tap to Call & Order</span>
+              <svg
                 viewBox="0 0 24 24"
                 width="20"
                 height="20"
                 fill="currentColor"
               >
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </div>
+          </a>
+
+          <div class="map-card">
+            <iframe
+              id="mapFrame"
+              title="Bear Bite location on Google Maps"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              allowfullscreen
+            ></iframe>
+            <a
+              id="mapLink"
+              class="btn btn-sm btn-map"
+              target="_blank"
+              rel="noopener"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                width="16"
+                height="16"
+                fill="currentColor"
+              >
                 <path
-                  d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11 11 0 0 0 3.6.6 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.250.2 2.450.6 3.600a1 1 0 0 1-.25 1z"
-                /></svg
-              ><span data-phone-text></span
-            ></a>
-            <a class="btn btn-ghost" href="#menu">See the menu</a>
+                  d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 0 1 0-5 2.5 2.5 0 0 1 0 5z"
+                />
+              </svg>
+              <span>Open in Google Maps</span>
+            </a>
           </div>
         </div>
-        <div class="hero-art">
-          <div class="ring" aria-hidden="true"></div>
-          <img
-            class="bear"
-            src="logo.png"
-            alt="Bear Bite logo: a happy bear eating from a green bowl"
-          />
-        </div>
-      </section>
-
-      <section class="section" id="menu">
-        <h2>Menu</h2>
-        <div
-          class="tabs"
-          id="tabs"
-          role="tablist"
-          aria-label="Menu categories"
-        ></div>
-        <div class="grid" id="menuGrid" role="tabpanel"></div>
-        <p class="note">
-          Prices may change. Ask us about today's specials when you call.
-        </p>
-      </section>
-
-      <section class="section" id="how">
-        <h2>How to order</h2>
-        <ol class="steps">
-          <li>
-            <strong>Choose</strong
-            ><span>Browse the menu and decide what you want.</span>
-          </li>
-          <li>
-            <strong>Call</strong
-            ><span>Tap the call button, or dial <b data-phone-text></b>.</span>
-          </li>
-          <li>
-            <strong>Pick up</strong
-            ><span>Tell us your name. We'll tell you when it's ready.</span>
-          </li>
-        </ol>
-      </section>
-
-      <section class="section visit" id="visit">
-        <div>
-          <h2>Visit us</h2>
-          <dl>
-            <dt>Phone</dt>
-            <dd>
-              <a data-phone href="tel:"><span data-phone-text></span></a>
-            </dd>
-            <dt>Address</dt>
-            <dd id="addr"></dd>
-            <dt>Hours</dt>
-            <dd id="hours"></dd>
-            <dt>Facebook</dt>
-            <dd>
-              <a id="fb" target="_blank" rel="noopener"
-                >Bear Bite on Facebook</a
-              >
-            </dd>
-          </dl>
-        </div>
-        <a class="callcard" data-phone href="tel:"
-          ><span>Hungry?</span><strong data-phone-text></strong
-          ><em>Tap to call and order</em></a
-        >
       </section>
     </main>
 
+    <!-- FOOTER -->
     <footer>
-      <p>© <span id="yr"></span> Bear Bite. All rights reserved.</p>
+      <div class="footer-content">
+        <img
+          src="logo.png"
+          alt="Bear Bite Logo"
+          width="52"
+          height="52"
+          class="footer-logo"
+        />
+        <p class="footer-brand">Bear Bite</p>
+        <p class="footer-copy">
+          © <span id="yr"></span> Bear Bite. All rights reserved. •
+          Boralesgamuwa, Sri Lanka
+        </p>
+      </div>
     </footer>
-    <a class="fab" data-phone href="tel:" aria-label="Call to order"
-      >Call to order</a
-    >
+
+    <!-- MOBILE FLOATING CALL ACTION BUTTON -->
+    <a class="fab-call" data-phone href="tel:" aria-label="Call to place order">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+        <path
+          d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11 11 0 0 0 3.6.6 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.6 3.6a1 1 0 0 1-.25 1z"
+        />
+      </svg>
+      <span>Call to Order</span>
+    </a>
+
     <script src="script.js"></script>
   </body>
 </html>
