@@ -479,7 +479,7 @@ h3,
   background: var(--accent);
   color: #ffffff;
   padding: 0.8rem 0;
-  transform: rotate(-0.8deg);
+  /* transform: rotate(-0.8deg); */
   width: 106%;
   margin-left: -3%;
   box-shadow: var(--shadow-sm);
