@@ -718,7 +718,7 @@ h3,
 }
 
 .gallery-slide {
-  flex: 0 0 min(82%, 360px);
+  flex: 0 0 min(82%, 250px);
   aspect-ratio: 4 / 5;
   scroll-snap-align: start;
   border-radius: var(--radius-lg);
