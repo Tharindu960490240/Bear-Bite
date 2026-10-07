@@ -822,8 +822,8 @@ h3,
 }
 
 .gallery-slide {
-  flex: 0 0 min(82%, 300px);
-  aspect-ratio: 4 / 5;
+  flex: 0 0 min(360px);
+  aspect-ratio: 5 / 5;
   scroll-snap-align: start;
   border-radius: var(--radius-lg);
   overflow: hidden;
@@ -1228,6 +1228,10 @@ footer {
   .menu-footer-note {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .gallery-slide {
+    flex: 0 0 min(410px);
   }
 }
 

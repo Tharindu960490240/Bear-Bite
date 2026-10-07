@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bear Bite | Bite into goodness</title>
+<meta name="description" content="Bear Bite in Boralesgamuwa. See the menu and call to place your order.">
+<link rel="icon" href="logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script>try{var t=localStorage.getItem("bb-theme");if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+</head>
+<body>
+<header class="nav" id="nav">
+  <a href="#top" class="brand" aria-label="Bear Bite home"><img src="logo.png" alt="" class="brand-logo" width="40" height="40"><span>Bear Bite</span></a>
+  <nav aria-label="Main"><a href="#menu">Menu</a><a href="#gallery">Gallery</a><a href="#how">Order</a><a href="#visit">Visit</a></nav>
+  <div class="nav-actions">
+    <button class="theme" id="themeBtn" aria-label="Switch theme"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle class="sun" cx="12" cy="12" r="4"/><path class="sun" d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/><path class="moon" d="M21 13a9 9 0 1 1-10-10 7 7 0 0 0 10 10z"/></svg></button>
+    <a class="btn btn-sm" data-phone href="tel:">Call now</a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="hero-card">
+      <div class="hero-text">
+        <p class="pill"><i></i>Order by phone, pick up fresh</p>
+        <h1>Bite into goodness.</h1>
+        <p class="lead">Choose from our menu, give us a call, and your order is ready when you arrive.</p>
+        <div class="cta-row">
+          <a class="btn btn-lg" data-phone href="tel:"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11 11 0 0 0 3.6.6 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.6 3.6a1 1 0 0 1-.25 1z"/></svg><span data-phone-text></span></a>
+          <a class="btn btn-lg btn-ghost" href="#menu">View menu</a>
+        </div>
+      </div>
+      <div class="hero-art">
+        <div class="blob" aria-hidden="true"></div>
+        <img class="hero-logo" src="logo.png" alt="Bear Bite logo: a happy bear eating from a green bowl">
+        <span class="chip c1">Call to order</span>
+        <span class="chip c2">Quick pick up</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="marquee" aria-hidden="true"><div class="marquee-in"><span>Bite into goodness</span><span>Call to order</span><span>Bear Bite</span><span>Bite into goodness</span><span>Call to order</span><span>Bear Bite</span><span>Bite into goodness</span><span>Call to order</span><span>Bear Bite</span><span>Bite into goodness</span><span>Call to order</span><span>Bear Bite</span></div></div>
+
+  <section class="section" id="menu">
+    <div class="head"><h2>Our menu</h2><p>Pick a category, then call to order.</p></div>
+    <div class="tabs" id="tabs" role="tablist" aria-label="Menu categories"></div>
+    <div class="grid" id="menuGrid" role="tabpanel"></div>
+    <p class="note">Prices may change. Ask about today's specials when you call.</p>
+  </section>
+
+  <section class="section" id="gallery">
+    <div class="head"><h2>Gallery</h2>
+      <div class="arrows"><button id="prev" aria-label="Previous photo">&#8592;</button><button id="next" aria-label="Next photo">&#8594;</button></div>
+    </div>
+    <div class="track" id="galTrack" tabindex="0" aria-label="Photo gallery"></div>
+  </section>
+
+  <section class="section" id="how">
+    <div class="head"><h2>Order in 3 steps</h2></div>
+    <ol class="steps">
+      <li><strong>Choose</strong><span>Browse the menu and decide what you want.</span></li>
+      <li><strong>Call</strong><span>Tap the call button, or dial <b data-phone-text></b>.</span></li>
+      <li><strong>Pick up</strong><span>Tell us your name. We'll tell you when it's ready.</span></li>
+    </ol>
+  </section>
+
+  <section class="section visit" id="visit">
+    <div class="info">
+      <h2>Visit us</h2>
+      <dl>
+        <dt>Phone</dt><dd><a data-phone href="tel:"><span data-phone-text></span></a></dd>
+        <dt>Address</dt><dd id="addr"></dd>
+        <dt>Hours</dt><dd id="hours"></dd>
+        <dt>Facebook</dt><dd><a id="fb" target="_blank" rel="noopener">Bear Bite on Facebook</a></dd>
+      </dl>
+    </div>
+    <a class="callcard" data-phone href="tel:"><span>Hungry?</span><strong data-phone-text></strong><em>Tap to call and order</em></a>
+    <div class="map">
+      <iframe id="mapFrame" title="Bear Bite location on Google Maps" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+      <a id="mapLink" class="btn btn-sm" target="_blank" rel="noopener">Open in Google Maps</a>
+    </div>
+  </section>
+</main>
+
+<footer><img src="logo.png" alt="" width="56" height="56"><p>© <span id="yr"></span> Bear Bite. All rights reserved.</p></footer>
+<a class="fab" data-phone href="tel:" aria-label="Call to order">Call to order</a>
+<script src="script.js"></script>
+</body>
+</html>
