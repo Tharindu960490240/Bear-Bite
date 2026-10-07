@@ -1,115 +1,387 @@
-/* ===== EDITABLE BUSINESS DETAILS & MENU DATA ===== */
+/* ===== EDITABLE BUSINESS DETAILS & DATA ===== */
 const BUSINESS = {
-  phoneDisplay: "+94 77 212 6006",
-  phoneLink: "+94772126006",
-  address: "2E Abeyrathne Mawatha, Boralesgamuwa 10290, Sri Lanka",
-  hours: "Mon - Sun: 10:00 AM - 9:00 PM",
+  phoneDisplay: "075 702 6004",
+  phoneLink: "0757026004",
+  address: "Boralesgamuwa, Sri Lanka",
+  hours: "Mon - Sun: 06:30 AM - 11:00 PM",
   facebook: "https://www.facebook.com/p/Bear-Bite-61590313485135/",
-  openHour: 10, // 10:00 AM
-  closeHour: 21, // 9:00 PM
+  openHour: 6, // 06:30 AM
+  closeHour: 23, // 11:00 PM
 };
 
+/* ===== SPECIAL OFFERS DATA ===== */
+const OFFERS = [
+  {
+    title: "Chicken Fried Rice Sawan",
+    sinhalaText: "චිකන් රයිස් කිලෝ එකම 1500/- ක් විතරයි",
+    desc: "A generous 1KG Sawan pack of fresh, flavorful Chicken Fried Rice. Perfect for family gatherings and group meals.",
+    price: "RS. 1,500",
+    image: "images/chicken-fried-rice-sawan.jpeg",
+    fallbackImg: "images/chicken-fried-rice-sawan.jpeg",
+    badge: "1KG Sawan Deal",
+    tag: "1KG Sawan Pack",
+  },
+  {
+    title: "Kottu Sawan",
+    sinhalaText: "කොත්තු කිලෝ එකම 1800/- ක් විතරයි",
+    desc: "A massive 1KG Sawan pack of authentic, sizzling Kottu cooked fresh and hot to order.",
+    price: "RS. 1,800",
+    image: "images/kottu-sawan.jpeg",
+    fallbackImg: "images/kottu-sawan.jpeg",
+    badge: "1KG Sawan Deal",
+    tag: "1KG Sawan Pack",
+  },
+];
+
+/* ===== MENU DATA ACCORDING TO BEAR BITE MENU ===== */
 const MENU = {
-  Burgers: [
+  "Rice & Curry": [
     {
-      name: "Classic Bear Burger",
-      desc: "Juicy beef patty, melted cheddar cheese, fresh lettuce, tomato, and house special sauce.",
-      price: "1200.00",
-      tag: "Best Seller",
-    },
-    {
-      name: "Double Grizzly Burger",
-      desc: "Double beef patties, double cheese, crunchy pickles, caramelized onions, and smoky BBQ drizzle.",
-      price: "1850.00",
-      tag: "Chef's Special",
-    },
-    {
-      name: "Crispy Chicken Burger",
-      desc: "Golden fried crunchy chicken breast fillet, house coleslaw, spicy mayo on a toasted bun.",
-      price: "1350.00",
-      tag: "Popular",
-    },
-    {
-      name: "Spicy Volcano Burger",
-      desc: "Spiced patty with jalapeños, spicy mayo, pepper jack cheese, and crispy onion rings.",
-      price: "1450.00",
-      tag: "Spicy 🌶️",
-    },
-  ],
-  Sides: [
-    {
-      name: "Golden Hot Chips",
-      desc: "Hand-cut, crisp golden salted fries served hot.",
-      price: "550.00",
-      tag: "Crispy",
-    },
-    {
-      name: "Crispy Onion Rings",
-      desc: "Thick-cut sweet onion rings battered and fried to perfection.",
-      price: "650.00",
+      name: "Vege Rice & Curry",
+      desc: "Traditional Sri Lankan rice served with delicious fresh vegetable curries.",
+      price: "RS. 450",
       tag: "Vegetarian",
     },
     {
-      name: "Chicken Nuggets (6 Pcs)",
-      desc: "Tender chicken nuggets with your choice of dipping sauce.",
-      price: "850.00",
-      tag: "Kids Favorite",
+      name: "Egg Rice & Curry",
+      desc: "Rice and curry served with seasoned cooked egg and flavorful sambols.",
+      price: "RS. 500",
+      tag: "Popular",
+    },
+    {
+      name: "Chicken Rice & Curry",
+      desc: "Authentic Sri Lankan rice accompanied by spiced chicken curry and delicious sides.",
+      price: "RS. 550",
+      tag: "Best Seller",
+    },
+    {
+      name: "Pork Rice & Curry",
+      desc: "Hearty rice and curry dish served with rich, flavorful Sri Lankan pork curry.",
+      price: "RS. 900",
+      tag: "Chef Special",
     },
   ],
-  Drinks: [
+  Rice: [
     {
-      name: "Chilled Soft Drinks",
-      desc: "Assorted carbonated sodas. Ask for today's flavors.",
-      price: "250.00",
-      tag: "Refreshing",
+      name: "Bear Bite Vegetable Rice",
+      desc: "Aromatic fried rice mixed with fresh garden vegetables.",
+      price: "S: RS. 700 / L: RS. 1,100",
+      tag: "Vegetarian",
     },
     {
-      name: "Thick Milkshake",
-      desc: "Rich creamy milkshakes in Chocolate, Vanilla, or Strawberry.",
-      price: "750.00",
+      name: "Bear Bite Chicken Rice",
+      desc: "Our signature fried rice tossed with tender chicken pieces and spices.",
+      price: "S: RS. 900 / L: RS. 1,300",
+      tag: "Best Seller",
+    },
+    {
+      name: "Bear Bite Seafood Rice",
+      desc: "Flavorful fried rice loaded with seasoned seafood cuttlefish and prawns.",
+      price: "S: RS. 1,300 / L: RS. 1,700",
+      tag: "Seafood",
+    },
+    {
+      name: "Egg & Onion Rice",
+      desc: "Freshly cooked rice stir-fried with fluffy egg and sweet onions.",
+      price: "S: RS. 850 / L: RS. 1,200",
+      tag: "Tasty",
+    },
+    {
+      name: "Mixed Chopsuey Rice",
+      desc: "Rich wok-fried chopsuey served on a bed of fresh fried rice.",
+      price: "RS. 2,300",
+      tag: "Special",
+    },
+    {
+      name: "Nasi Goreng",
+      desc: "Indonesian-style fried rice with spices and fried egg topping.",
+      price: "RS. 1,500",
+      tag: "Popular",
+    },
+  ],
+  Noodles: [
+    {
+      name: "Bear Bite Vegetable Noodles",
+      desc: "Stir-fried noodle dish loaded with crisp vegetables and herbs.",
+      price: "S: RS. 700 / L: RS. 1,050",
+      tag: "Vegetarian",
+    },
+    {
+      name: "Bear Bite Chicken Noodles",
+      desc: "Hot, wok-tossed noodles packed with tender chicken and seasonings.",
+      price: "S: RS. 950 / L: RS. 1,300",
       tag: "Customer Favorite",
     },
-  ],
-  Desserts: [
     {
-      name: "Honey Butter Waffle",
-      desc: "Warm Belgian waffle drizzled with pure honey and rich butter.",
-      price: "800.00",
-      tag: "Sweet",
+      name: "Bear Bite Seafood Noodles",
+      desc: "Rich noodles stir-fried with fresh seafood delicacies.",
+      price: "S: RS. 1,300 / L: RS. 1,750",
+      tag: "Seafood",
     },
     {
-      name: "Fudge Chocolate Brownie",
-      desc: "Rich, gooey chocolate brownie served fresh.",
-      price: "650.00",
-      tag: "Gooey",
+      name: "Chinese Mixed Noodles",
+      desc: "Chinese style stir-fried noodles cooked with mixed meats and veggies.",
+      price: "S: RS. 1,250 / L: RS. 1,650",
+      tag: "Chef Special",
+    },
+  ],
+  Kottu: [
+    {
+      name: "Bear Bite Vegetable Kottu",
+      desc: "Chopped flatbread chopped fresh with mixed vegetables and spices.",
+      price: "S: RS. 650 / L: RS. 1,000",
+      tag: "Vegetarian",
+    },
+    {
+      name: "Bear Bite Special Chicken Kottu",
+      desc: "Sizzling kottu chopped with succulent chicken, vegetables, and hot gravy.",
+      price: "S: RS. 950 / L: RS. 1,400",
+      tag: "Best Seller",
+    },
+    {
+      name: "Bear Bite Cheese Kottu",
+      desc: "Creamy Kottu layered with melted cheese and seasonings.",
+      price: "S: RS. 1,050 / L: RS. 1,600",
+      tag: "Cheesy",
+    },
+    {
+      name: "Bear Bite Cheese Chicken Kottu",
+      desc: "Juicy chicken kottu drenched in melted gooey cheese.",
+      price: "S: RS. 1,250 / L: RS. 1,750",
+      tag: "Top Rated",
+    },
+    {
+      name: "Bear Bite Nai Miris Kottu",
+      desc: "Extra spicy Sri Lankan Kottu infused with fiery local Nai Miris chilies.",
+      price: "S: RS. 900 / L: RS. 1,250",
+      tag: "Spicy",
+    },
+    {
+      name: "Mixed Kottu",
+      desc: "Rich combination Kottu mixed with chicken, egg, and special spices.",
+      price: "S: RS. 1,300 / L: RS. 1,850",
+      tag: "Hearty",
+    },
+    {
+      name: "Seafood Kottu",
+      desc: "Sizzling kottu chopped with fresh cuttlefish, prawns, and herbs.",
+      price: "S: RS. 1,300 / L: RS. 1,850",
+      tag: "Seafood",
+    },
+    {
+      name: "Egg Kottu",
+      desc: "Classic street style Kottu chopped hot with fresh eggs.",
+      price: "S: RS. 750 / L: RS. 1,100",
+      tag: "Classic",
+    },
+    {
+      name: "Idiyappam Chicken Kottu",
+      desc: "Unique String Hopper (Idiyappam) Kottu cooked with spiced chicken.",
+      price: "S: RS. 950 / L: RS. 1,300",
+      tag: "Specialty",
+    },
+    {
+      name: "Idiyappam Seafood Kottu",
+      desc: "String Hopper Kottu stir-fried with fresh seafood.",
+      price: "S: RS. 1,300 / L: RS. 1,850",
+      tag: "Specialty",
+    },
+    {
+      name: "Idiyappam Mixed Kottu",
+      desc: "String Hopper Kottu cooked with chicken, egg, and vegetables.",
+      price: "S: RS. 1,300 / L: RS. 1,850",
+      tag: "Specialty",
+    },
+  ],
+  Appetizer: [
+    {
+      name: "Chicken Spring Rolls (4 Pcs)",
+      desc: "Crispy rolls filled with savory spiced chicken filling.",
+      price: "RS. 300",
+      tag: "Crispy",
+    },
+    {
+      name: "Cuttlefish (3 Pcs)",
+      desc: "Golden fried seasoned cuttlefish pieces.",
+      price: "RS. 200",
+      tag: "Seafood",
+    },
+    {
+      name: "Egg Rolls",
+      desc: "Crispy Sri Lankan fried snack stuffed with egg and spices.",
+      price: "RS. 100",
+      tag: "Snack",
+    },
+    {
+      name: "Parata",
+      desc: "Flaky, layered traditional flatbread served warm.",
+      price: "RS. 60",
+      tag: "Bread",
+    },
+    {
+      name: "Egg Roti",
+      desc: "Fresh pan-baked roti filled with egg.",
+      price: "RS. 120",
+      tag: "Bread",
+    },
+    {
+      name: "Hopper",
+      desc: "Crispy edged bowl-shaped Sri Lankan hopper.",
+      price: "RS. 40",
+      tag: "Traditional",
+    },
+    {
+      name: "Egg Hopper",
+      desc: "Hot hopper with a soft-cooked egg baked in the center.",
+      price: "RS. 100",
+      tag: "Traditional",
+    },
+  ],
+  Omelette: [
+    {
+      name: "Plain Omelette",
+      desc: "Pan-fried fresh eggs seasoned with salt and pepper.",
+      price: "RS. 300",
+      tag: "Classic",
+    },
+    {
+      name: "Cheese Omelette",
+      desc: "Soft fluffy omelette stuffed with rich melted cheese.",
+      price: "RS. 500",
+      tag: "Cheesy",
+    },
+    {
+      name: "Cheese & Chicken Omelette",
+      desc: "Omelette stuffed with tender chicken and gooey melted cheese.",
+      price: "RS. 650",
+      tag: "Hearty",
+    },
+    {
+      name: "Bear Bite Spicy Sri Lankan Omelette",
+      desc: "Local style omelette loaded with onions, green chilies, and spices.",
+      price: "RS. 650",
+      tag: "Spicy",
+    },
+  ],
+  Chicken: [
+    {
+      name: "Black Pepper Chicken",
+      desc: "Succulent chicken tossed in a spicy, aromatic black pepper sauce.",
+      price: "RS. 1,350",
+      tag: "Chef Special",
+    },
+    {
+      name: "Chicken Devilled",
+      desc: "Spicy Sri Lankan devilled chicken cooked with capsicums and onions.",
+      price: "RS. 1,350",
+      tag: "Spicy",
+    },
+    {
+      name: "Chilli Chicken",
+      desc: "Wok-fried chicken cooked with hot chili peppers and sauce.",
+      price: "RS. 1,350",
+      tag: "Spicy",
+    },
+    {
+      name: "Bear Bite Chicken Set Menu",
+      desc: "Complete chicken meal pack served with rice and side accompaniments.",
+      price: "S: RS. 850 / L: RS. 1,000",
+      tag: "Set Menu",
+    },
+    {
+      name: "Chicken Fried Rice Budget Pack",
+      desc: "Affordable single serving pack of delicious chicken fried rice.",
+      price: "RS. 400",
+      tag: "Budget Pack",
+    },
+  ],
+  "Fish & Seafood": [
+    {
+      name: "Fish Devilled",
+      desc: "Tender fish cooked in hot devilled sauce with vegetables.",
+      price: "RS. 1,200",
+      tag: "Spicy Seafood",
+    },
+    {
+      name: "Fish Fry",
+      desc: "Crispy fried fish slice seasoned with local herbs.",
+      price: "RS. 400",
+      tag: "Seafood",
+    },
+    {
+      name: "Hot Butter Prawns",
+      desc: "Prawns fried crisp and tossed in rich garlic butter sauce.",
+      price: "RS. 1,500",
+      tag: "Customer Favorite",
+    },
+    {
+      name: "Prawns Devilled",
+      desc: "Fiery devilled prawns cooked with green chilies and onions.",
+      price: "RS. 1,600",
+      tag: "Spicy Seafood",
+    },
+    {
+      name: "Hot Butter Cuttlefish",
+      desc: "Signature crispy fried cuttlefish tossed in spicy hot butter sauce.",
+      price: "RS. 1,600",
+      tag: "Top Favorite",
+    },
+    {
+      name: "Cuttlefish Devilled",
+      desc: "Cuttlefish rings tossed in spicy devilled gravy.",
+      price: "RS. 1,600",
+      tag: "Spicy Seafood",
+    },
+  ],
+  Pork: [
+    {
+      name: "Black Pork Curry",
+      desc: "Traditional Sri Lankan roasted dark pork curry cooked with black spices.",
+      price: "RS. 1,700",
+      tag: "Sri Lankan Classic",
+    },
+    {
+      name: "Pork Devilled",
+      desc: "Spicy devilled pork tossed with hot sauce, onions, and peppers.",
+      price: "RS. 1,700",
+      tag: "Spicy",
+    },
+    {
+      name: "Black Pepper Pork",
+      desc: "Pork cooked with crushed black pepper and aromatics.",
+      price: "RS. 1,700",
+      tag: "Flavorful",
+    },
+  ],
+  Vegetable: [
+    {
+      name: "Chopsuey",
+      desc: "Fresh, crisp mixed vegetables cooked in light stir-fry sauce.",
+      price: "RS. 800",
+      tag: "Vegetarian",
+    },
+    {
+      name: "Boiled Vegetable",
+      desc: "Freshly boiled garden vegetables lightly seasoned.",
+      price: "RS. 600",
+      tag: "Healthy Choice",
     },
   ],
 };
 
+/* ===== GALLERY DATA ===== */
 const GALLERY = [
-  "images/1.jpg",
-  "images/2.jpg",
-  "images/3.jpg",
-  "images/4.jpg",
-  "images/5.jpg",
-  "images/6.jpg",
+  "images/1.jpeg",
+  "images/2.jpeg",
+  "images/3.jpeg",
+  "images/4.jpeg",
+  "images/5.jpeg",
+  "images/6.jpeg",
 ];
 
 /* ===== DOM HELPERS ===== */
 const $ = (s, el = document) => el.querySelector(s);
 const $$ = (s, el = document) => [...el.querySelectorAll(s)];
-
-const formatCurrency = (p) => {
-  const num = parseFloat(p);
-  if (isNaN(num) || num === 0) return "Rs. Ask for price";
-  return (
-    "Rs. " +
-    num.toLocaleString("en-US", {
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2,
-    })
-  );
-};
 
 /* ===== DYNAMIC BUSINESS DATA BINDING ===== */
 $$("[data-phone]").forEach((a) => (a.href = "tel:" + BUSINESS.phoneLink));
@@ -119,7 +391,7 @@ if ($("#hours")) $("#hours").textContent = BUSINESS.hours;
 if ($("#fb")) $("#fb").href = BUSINESS.facebook;
 if ($("#yr")) $("#yr").textContent = new Date().getFullYear();
 
-// Embed Google Maps Embed & Link
+// Embed Google Maps Link
 const mapQuery = encodeURIComponent("Bear Bite, " + BUSINESS.address);
 if ($("#mapFrame")) {
   $("#mapFrame").src = `https://www.google.com/maps?q=${mapQuery}&output=embed`;
@@ -144,7 +416,7 @@ function updateStoreStatus() {
       statusBadge.style.backgroundColor = "var(--green-bg)";
       statusBadge.style.color = "var(--green)";
     } else {
-      statusText.textContent = `Closed Now • Opens at ${BUSINESS.openHour}:00 AM`;
+      statusText.textContent = `Closed Now • Opens at ${BUSINESS.openHour}:30 AM`;
       statusBadge.style.backgroundColor = "rgba(231, 76, 60, 0.15)";
       statusBadge.style.color = "#e74c3c";
       const dot = $(".status-dot", statusBadge);
@@ -153,6 +425,40 @@ function updateStoreStatus() {
   }
 }
 updateStoreStatus();
+
+/* ===== RENDER SPECIAL OFFERS ===== */
+const offersGrid = $("#offersGrid");
+function renderOffers() {
+  if (!offersGrid) return;
+  offersGrid.innerHTML = OFFERS.map(
+    (offer) => `
+    <article class="offer-card">
+      <div class="offer-image-wrapper">
+        <img
+          src="${offer.image}"
+          alt="${offer.title}"
+          class="offer-image"
+          onerror="this.onerror=null; this.src='${offer.fallbackImg || "logo.png"}';"
+          loading="lazy"
+        />
+        <span class="offer-badge">${offer.badge}</span>
+      </div>
+      <div class="offer-content">
+        <h3 class="offer-title">${offer.title}</h3>
+        <p class="offer-sinhala">${offer.sinhalaText}</p>
+        <p class="offer-desc">${offer.desc}</p>
+        <div class="offer-price-row">
+          <span class="offer-price">${offer.price}</span>
+          <a class="btn btn-sm btn-primary" data-phone href="tel:${BUSINESS.phoneLink}">
+            <span>Order Now</span>
+          </a>
+        </div>
+      </div>
+    </article>
+  `,
+  ).join("");
+}
+renderOffers();
 
 /* ===== MENU CATEGORY TAB SWITCHING ===== */
 const tabsContainer = $("#tabs");
@@ -170,7 +476,7 @@ function renderMenuCategory(category) {
         <div>
           <div class="menu-card-header">
             <h3>${item.name}</h3>
-            <span class="price-tag">${formatCurrency(item.price)}</span>
+            <span class="price-tag">${item.price}</span>
           </div>
           <p>${item.desc || ""}</p>
         </div>

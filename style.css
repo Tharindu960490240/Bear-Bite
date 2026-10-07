@@ -2,7 +2,7 @@
   --radius-lg: 28px;
   --radius-md: 18px;
   --radius-sm: 12px;
-  --max-width: 1350px;
+  --max-width: 1500px;
   --font-head: "Bricolage Grotesque", system-ui, -apple-system, sans-serif;
   --font-body: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
 }
@@ -479,7 +479,6 @@ h3,
   background: var(--accent);
   color: #ffffff;
   padding: 0.8rem 0;
-  /* transform: rotate(-0.8deg); */
   width: 106%;
   margin-left: -3%;
   box-shadow: var(--shadow-sm);
@@ -543,8 +542,111 @@ h3,
 
 .section-sub {
   color: var(--text-muted);
-  max-width: 32ch;
+  max-width: 45ch;
   font-size: 1rem;
+}
+
+/* ==================== SPECIAL OFFERS SECTION ==================== */
+.offers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr));
+  gap: 1.75rem;
+}
+
+.offer-card {
+  background: var(--card-bg);
+  border: 1.5px solid var(--accent);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  display: flex;
+  flex-direction: column;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.offer-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+
+.offer-image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 280px;
+  background: var(--bg-subtle);
+  overflow: hidden;
+}
+
+.offer-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.offer-card:hover .offer-image {
+  transform: scale(1.04);
+}
+
+.offer-badge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: var(--accent);
+  color: #ffffff;
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: 0.85rem;
+  box-shadow: var(--shadow-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.offer-content {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  flex-grow: 1;
+}
+
+.offer-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--text-main);
+  line-height: 1.2;
+}
+
+.offer-sinhala {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--accent);
+  line-height: 1.3;
+}
+
+.offer-desc {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+.offer-price-row {
+  margin-top: auto;
+  padding-top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px dashed var(--card-border);
+}
+
+.offer-price {
+  font-family: var(--font-head);
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--text-main);
 }
 
 /* ==================== MENU SECTION ==================== */
@@ -591,7 +693,7 @@ h3,
 
 .menu-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 310px), 1fr));
   gap: 1.25rem;
 }
 
@@ -624,7 +726,7 @@ h3,
 }
 
 .menu-card h3 {
-  font-size: clamp(1.15rem, 1.8vw, 1.3rem);
+  font-size: clamp(1.1rem, 1.8vw, 1.25rem);
   font-weight: 800;
   color: var(--text-main);
   line-height: 1.25;
@@ -633,17 +735,19 @@ h3,
 .price-tag {
   font-family: var(--font-head);
   font-weight: 800;
-  font-size: 1.05rem;
+  font-size: 0.95rem;
   color: var(--accent);
   background: var(--accent-light);
-  padding: 0.25rem 0.75rem;
+  padding: 0.35rem 0.8rem;
   border-radius: 999px;
   white-space: nowrap;
+  text-align: right;
+  line-height: 1.2;
 }
 
 .menu-card p {
   color: var(--text-muted);
-  font-size: 0.94rem;
+  font-size: 0.92rem;
 }
 
 .menu-card-footer {
@@ -718,7 +822,7 @@ h3,
 }
 
 .gallery-slide {
-  flex: 0 0 min(82%, 250px);
+  flex: 0 0 min(82%, 300px);
   aspect-ratio: 4 / 5;
   scroll-snap-align: start;
   border-radius: var(--radius-lg);
@@ -998,8 +1102,6 @@ footer {
 }
 
 /* ==================== COMPREHENSIVE RESPONSIVE MEDIA QUERIES ==================== */
-
-/* Tablet & Mobile Layout (< 960px) */
 @media (max-width: 960px) {
   .nav nav {
     display: none;
@@ -1057,7 +1159,6 @@ footer {
   }
 }
 
-/* Small Mobile (< 480px) */
 @media (max-width: 480px) {
   .nav {
     padding: 0.4rem 0.6rem;
@@ -1120,13 +1221,16 @@ footer {
     right: -2%;
   }
 
+  .offers-grid {
+    grid-template-columns: 1fr;
+  }
+
   .menu-footer-note {
     flex-direction: column;
     align-items: flex-start;
   }
 }
 
-/* Reduced Motion Guidelines */
 @media (prefers-reduced-motion: reduce) {
   *,
   ::before,
