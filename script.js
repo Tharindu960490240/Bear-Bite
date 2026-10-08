@@ -403,8 +403,16 @@ if ($("#mapLink")) {
 
 /* ===== REAL-TIME OPEN STATUS BADGE ===== */
 function updateStoreStatus() {
-  const now = new Date();
-  const currentHour = now.getHours();
+  // Get current hour in Sri Lanka timezone (Asia/Colombo)
+  const currentHour = parseInt(
+    new Intl.DateTimeFormat("en-US", {
+      timeZone: "Asia/Colombo",
+      hour: "numeric",
+      hourCycle: "h23",
+    }).format(new Date()),
+    10,
+  );
+
   const isOpen =
     currentHour >= BUSINESS.openHour && currentHour < BUSINESS.closeHour;
   const statusBadge = $("#storeStatusBadge");
@@ -424,6 +432,7 @@ function updateStoreStatus() {
     }
   }
 }
+
 updateStoreStatus();
 
 /* ===== RENDER SPECIAL OFFERS ===== */
