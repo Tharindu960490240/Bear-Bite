@@ -29,10 +29,12 @@ Custom domain: Project > Custom domains > Set up a domain.
     npm run deploy
 Then do steps 4 to 6 in the dashboard.
 
-## Starter data
-Until the admin presses Save for the first time, the site shows the starter menu (Burgers, Sides, Drinks, Sweets),
-the phone number, address and opening hours from the original design. Prices are blank on purpose, so no price is shown.
-To go back to the starter data later: Cloudflare > Storage & Databases > KV > bear-bite > View > delete the key named `content`.
+## Starter data (his real menu)
+Until the admin presses Save for the first time, the site shows Bear Bite's real menu (13 categories, 52 items, with S and L
+prices), plus the phone number, address and hours. Photos can be added to any item from the admin.
+If the site still shows older menu data after you update it, do ONE of these:
+- Admin > Account > Backup and restore > Load from file, choose `starter-data.json` (in this folder), then press Save changes. Or
+- Cloudflare > Storage & Databases > KV > bear-bite > View > delete the key named `content`.
 
 ## Updating an already deployed site
 Replace the files in your GitHub repository with the ones in this folder (keep the folder layout). Cloudflare redeploys
@@ -56,3 +58,8 @@ by itself. Your menu, photos and password stay safe in KV.
     npm install
     npm run dev
 Open http://localhost:8788 and /admin. Local setup code: BEAR1234. (Local data is separate from the live site.)
+
+## Icons (v3.3)
+All emoji were replaced with line icons. Each category has an icon picked in Admin → Menu ("Auto" guesses from the name).
+If your live data still shows old emoji icons, the site falls back to name-based icons automatically.
+To restore the starter menu: Admin → Account → Load from file → `starter-data.json` → Save.

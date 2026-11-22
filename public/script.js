@@ -9,7 +9,7 @@ $("#themeBtn").onclick = () => {
   const next = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
   document.documentElement.dataset.theme = next;
   try { localStorage.setItem("bb-theme", next); } catch (e) {}
-  const m = $('meta[name="theme-color"]'); if (m) m.content = next === "dark" ? "#150d07" : "#fff8e7";
+  const m = $('meta[name="theme-color"]'); if (m) m.content = next === "dark" ? "#110D08" : "#FFFCF5";
 };
 
 /* ---------- scroll reveal ---------- */
@@ -37,7 +37,21 @@ if (io) {
 }
 
 /* ---------- helpers ---------- */
-const money = (p, cur) => { p = String(p || "").trim(); if (!p) return ""; return isNaN(parseFloat(p)) ? p : (cur ? cur + " " : "") + parseFloat(p).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }); };
+const money = (p, cur) => { p = String(p || "").trim(); if (!p) return ""; const n = parseFloat(p); if (isNaN(n)) return p; return (cur ? cur + " " : "") + n.toLocaleString("en-US", { minimumFractionDigits: Number.isInteger(n) ? 0 : 2, maximumFractionDigits: 2 }); };
+const ICON_KEYS = ["rice", "noodles", "curry", "kottu", "chicken", "fish", "prawn", "squid", "pork", "veg", "egg", "roll", "bear", "burger", "drink", "dessert", "pizza", "fries", "coffee", "utensils"];
+const GUESS = [["curry", "curry"], ["rice", "rice"], ["noodle", "noodles"], ["kottu", "kottu"], ["chicken", "chicken"], ["fish", "fish"], ["prawn", "prawn"], ["shrimp", "prawn"], ["cuttle", "squid"], ["squid", "squid"], ["pork", "pork"], ["veg", "veg"], ["salad", "veg"], ["omelet", "egg"], ["egg", "egg"], ["appeti", "roll"], ["starter", "roll"], ["burger", "burger"], ["pizza", "pizza"], ["drink", "drink"], ["juice", "drink"], ["beverage", "drink"], ["coffee", "coffee"], ["tea", "coffee"], ["sweet", "dessert"], ["dessert", "dessert"], ["ice", "dessert"], ["side", "fries"], ["fries", "fries"], ["beef", "pork"], ["meat", "pork"]];
+const iconFor = c => ICON_KEYS.includes(c.icon) ? c.icon : (GUESS.find(([k]) => c.name.toLowerCase().includes(k)) || [0, "utensils"])[1];
+function ic(key) {
+  const NS = "http://www.w3.org/2000/svg", s = document.createElementNS(NS, "svg"), u = document.createElementNS(NS, "use");
+  s.setAttribute("class", "ic"); s.setAttribute("aria-hidden", "true"); u.setAttribute("href", "#i-" + key); s.appendChild(u); return s;
+}
+function priceNodes(i, cur) {
+  const box = el("div", "prices"), small = money(i.price, cur), large = money(i.priceL, cur);
+  const chip = (txt, size) => { const p = el("span", "price"); if (size) p.appendChild(el("em", "", size)); p.appendChild(document.createTextNode(txt)); return p; };
+  if (large) { if (small) box.appendChild(chip(small, "S")); box.appendChild(chip(large, "L")); }
+  else if (small) box.appendChild(chip(small));
+  return box;
+}
 const safeUrl = u => /^(https?:\/\/|\/)/.test(u || "") ? u : "";
 const mins = t => { const [h, m] = String(t).split(":").map(Number); return h * 60 + m; };
 const fmt12 = t => { let [h, m] = t.split(":").map(Number); const ap = h >= 12 ? "PM" : "AM"; h = h % 12 || 12; return h + ":" + String(m).padStart(2, "0") + " " + ap; };
@@ -81,6 +95,7 @@ function renderBusiness(d) {
   const q = encodeURIComponent(b.mapQuery || (b.name + ", " + b.address));
   $("#mapFrame").src = "https://www.google.com/maps?q=" + q + "&output=embed";
   $("#mapLink").href = "https://www.google.com/maps/search/?api=1&query=" + q;
+  $("#whereLink").href = $("#mapLink").href; $("#addrQuick").textContent = b.address;
   $("#foot").textContent = "© " + new Date().getFullYear() + " " + b.name + ". " + (b.footerText || "All rights reserved.");
   const m = $("#marquee"); m.textContent = "";
   for (let i = 0; i < 12; i++) m.appendChild(el("span", "", [b.tagline, "Call to order", b.name][i % 3]));
@@ -108,15 +123,16 @@ function renderHours(d) {
 
 /* ---------- render: popular picks + promotions ---------- */
 function renderFavs(d) {
-  const items = d.categories.flatMap(c => c.items.filter(i => i.popular && !i.hidden).map(i => ({ ...i, cat: c.name })));
+  const items = d.categories.flatMap(c => c.items.filter(i => i.popular && !i.hidden).map(i => ({ ...i, cat: c.name, ico: iconFor(c) })));
   $("#favs").hidden = !items.length;
   const box = $("#favList"); box.textContent = "";
   items.slice(0, 8).forEach(i => {
     const c = el("article", "fav");
     if (safeUrl(i.image)) { const im = el("img"); im.src = i.image; im.alt = i.name; im.loading = "lazy"; c.appendChild(im); }
+    else { const w = el("span", "ico"); w.appendChild(ic(i.ico)); c.appendChild(w); }
     c.appendChild(el("small", "", i.cat)); c.appendChild(el("h3", "", i.name));
     if (i.desc) c.appendChild(el("p", "", i.desc));
-    const pr = money(i.price, d.business.currency); if (pr) c.appendChild(el("span", "price", pr));
+    c.appendChild(priceNodes(i, d.business.currency));
     box.appendChild(c);
   });
 }
@@ -139,31 +155,30 @@ function renderPromos(d) {
 
 /* ---------- render: menu ---------- */
 function renderMenu() {
-  const cats = DATA.categories.map(c => ({ ...c, items: c.items.filter(i => !i.hidden) })).filter(c => c.items.length);
+  const cats = DATA.categories.map((c, ci) => ({ ...c, ci, items: c.items.filter(i => !i.hidden) })).filter(c => c.items.length);
   const tabs = $("#tabs"), grid = $("#menuGrid"), q = $("#q").value.trim().toLowerCase();
   tabs.textContent = ""; grid.textContent = "";
   if (!cats.length) { grid.appendChild(el("p", "note", "The menu is being updated. Please call us.")); return; }
   if (!cats.some(c => c.id === activeCat)) activeCat = cats[0].id;
   cats.forEach(c => {
-    const b = el("button", "", c.name); b.setAttribute("role", "tab"); b.setAttribute("aria-selected", String(!q && c.id === activeCat));
+    const b = el("button"); b.type = "button"; b.setAttribute("role", "tab"); b.setAttribute("aria-selected", String(!q && c.id === activeCat));
+    b.appendChild(ic(iconFor(c))); b.appendChild(document.createTextNode(c.name));
     b.onclick = () => { activeCat = c.id; $("#q").value = ""; renderMenu(); }; tabs.appendChild(b);
   });
-  const items = q ? cats.flatMap(c => c.items.filter(i => (i.name + " " + i.desc).toLowerCase().includes(q))) : cats.find(c => c.id === activeCat).items;
-  if (!items.length) { grid.appendChild(el("p", "note", "Nothing matches your search.")); return; }
-  items.forEach((i, k) => {
-    const a = el("article", "item" + (i.soldOut ? " sold" : "") + (safeUrl(i.image) ? " has-img" : "")); a.style.setProperty("--i", Math.min(k, 12));
-    const txt = el("div", "txt"), row = el("div", "row"); row.appendChild(el("h3", "", i.name));
-    const pr = money(i.price, DATA.business.currency);
-    if (pr) { row.appendChild(el("span", "dots")); row.appendChild(el("span", "price", pr)); }
-    txt.appendChild(row);
+  const rows = q ? cats.flatMap(c => c.items.filter(i => (i.name + " " + i.desc + " " + c.name).toLowerCase().includes(q)).map(i => ({ i, c }))) : cats.find(c => c.id === activeCat).items.map(i => ({ i, c: cats.find(c => c.id === activeCat) }));
+  if (!rows.length) { grid.appendChild(el("p", "note", "Nothing matches your search.")); return; }
+  rows.forEach(({ i, c }, k) => {
+    const a = el("article", "item t" + (c.ci % 4) + (i.soldOut ? " sold" : "")); a.style.setProperty("--i", Math.min(k, 14));
+    if (safeUrl(i.image)) { const im = el("img", "thumb"); im.src = i.image; im.alt = i.name; im.loading = "lazy"; a.appendChild(im); }
+    else { const t = el("span", "tile"); t.appendChild(ic(iconFor(c))); a.appendChild(t); }
+    const txt = el("div", "txt"); if (q) txt.appendChild(el("small", "cat", c.name)); txt.appendChild(el("h3", "", i.name));
     if (i.desc) txt.appendChild(el("p", "", i.desc));
+    txt.appendChild(priceNodes(i, DATA.business.currency));
     const tags = el("div", "tags");
-    if (i.popular) tags.appendChild(el("span", "tag hot", "Popular"));
+    if (i.popular) tags.appendChild(el("span", "tag hot", "House favourite"));
     if (i.soldOut) tags.appendChild(el("span", "tag out", "Sold out today"));
     if (tags.children.length) txt.appendChild(tags);
-    a.appendChild(txt);
-    if (safeUrl(i.image)) { const im = el("img", "thumb"); im.src = i.image; im.alt = i.name; im.loading = "lazy"; a.appendChild(im); }
-    grid.appendChild(a);
+    a.appendChild(txt); grid.appendChild(a);
   });
 }
 

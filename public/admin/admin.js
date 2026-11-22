@@ -108,6 +108,11 @@ function resetScreen() {
 }
 
 /* ---------- panels ---------- */
+function iconBox(cat) {
+  const sel = h("select", { title: "Icon for this category", "aria-label": "Category icon", style: "width:auto;max-width:170px" },
+    ...[["", "Auto (from name)"], ["rice", "Rice bowl"], ["noodles", "Noodles"], ["curry", "Rice & curry"], ["kottu", "Kottu / wok"], ["chicken", "Chicken"], ["fish", "Fish"], ["prawn", "Prawns"], ["squid", "Cuttlefish / squid"], ["pork", "Pork / meat"], ["veg", "Vegetables"], ["egg", "Egg / omelette"], ["roll", "Rolls / appetizer"], ["bear", "Bear Bite (bear)"], ["burger", "Burger"], ["drink", "Drink"], ["dessert", "Dessert"], ["pizza", "Pizza"], ["fries", "Fries / sides"], ["coffee", "Coffee / tea"], ["utensils", "General (fork & knife)"]].map(([v, t]) => h("option", { value: v, selected: (cat.icon || "") === v }, t)));
+  sel.addEventListener("change", () => { cat.icon = sel.value; markDirty(); }); return sel;
+}
 function panelBusiness() {
   const b = content.business;
   return [
@@ -147,22 +152,22 @@ function panelMenu() {
   const out = [];
   content.categories.forEach((cat, ci) => {
     out.push(h("div", { class: "card" },
-      h("div", { class: "cat-head" }, field("", cat, "name"),
+      h("div", { class: "cat-head" }, iconBox(cat), field("", cat, "name"),
         h("button", { class: "btn ghost sm", type: "button", title: "Move up", onclick: () => move(content.categories, ci, -1) }, "Up"),
         h("button", { class: "btn ghost sm", type: "button", title: "Move down", onclick: () => move(content.categories, ci, 1) }, "Down"),
         h("button", { class: "btn danger sm", type: "button", onclick: () => { if (confirm(`Delete the whole "${cat.name}" category and its ${cat.items.length} items?`)) { content.categories.splice(ci, 1); markDirty(); render(); } } }, "Delete category")),
       ...cat.items.map((it, ii) => h("div", { class: "item" }, imagePicker(it, "image"),
         h("div", { class: "body" },
-          h("div", { class: "cols" }, field("Item name", it, "name"), field("Price", it, "price", { hint: "Number only, or text like 'Ask us'" })),
+          h("div", { class: "cols" }, field("Item name", it, "name"), field("Price (or small size)", it, "price", { hint: "Number only, e.g. 700" }), field("Large price", it, "priceL", { hint: "Optional. Fill in only if the item has S and L sizes" })),
           field("Description", it, "desc", { area: true }),
-          h("div", { class: "row" }, check("Popular", it, "popular"), check("Sold out today", it, "soldOut"), check("Hide from menu", it, "hidden"), h("span", { class: "sp" }),
+          h("div", { class: "row" }, check("House favourite", it, "popular"), check("Sold out today", it, "soldOut"), check("Hide from menu", it, "hidden"), h("span", { class: "sp" }),
             h("button", { class: "btn ghost sm", type: "button", onclick: () => move(cat.items, ii, -1) }, "Up"),
             h("button", { class: "btn ghost sm", type: "button", onclick: () => move(cat.items, ii, 1) }, "Down"),
             h("button", { class: "btn danger sm", type: "button", onclick: () => { if (confirm(`Delete "${it.name}"?`)) { cat.items.splice(ii, 1); markDirty(); render(); } } }, "Delete"))))),
       cat.items.length ? null : h("div", { class: "empty" }, "No items yet"),
-      h("div", { class: "row" }, h("button", { class: "btn sm", type: "button", onclick: () => { cat.items.push({ id: uid(), name: "New item", desc: "", price: "", image: "", popular: false, soldOut: false, hidden: false }); markDirty(); render(); } }, "+ Add item"))));
+      h("div", { class: "row" }, h("button", { class: "btn sm", type: "button", onclick: () => { cat.items.push({ id: uid(), name: "New item", desc: "", price: "", priceL: "", image: "", popular: false, soldOut: false, hidden: false }); markDirty(); render(); } }, "+ Add item"))));
   });
-  out.push(h("div", { class: "row" }, h("button", { class: "btn", type: "button", onclick: () => { content.categories.push({ id: uid(), name: "New category", items: [] }); markDirty(); render(); } }, "+ Add category")));
+  out.push(h("div", { class: "row" }, h("button", { class: "btn", type: "button", onclick: () => { content.categories.push({ id: uid(), name: "New category", icon: "", items: [] }); markDirty(); render(); } }, "+ Add category")));
   return out;
 }
 function panelPromos() {
@@ -197,6 +202,18 @@ function panelGallery() {
 function panelAccount() {
   const cur = h("input", { type: "password", autocomplete: "current-password" }), n1 = h("input", { type: "password", autocomplete: "new-password" }), n2 = h("input", { type: "password", autocomplete: "new-password" });
   const cur2 = h("input", { type: "password", autocomplete: "current-password" }), keyBox = h("div", {});
+  const restoreInput = h("input", { type: "file", accept: "application/json,.json", style: "display:none" });
+  restoreInput.addEventListener("change", async () => {
+    const f = restoreInput.files[0]; if (!f) return;
+    try {
+      const d = JSON.parse(await f.text());
+      if (!d || !Array.isArray(d.categories) || !d.business) throw new Error("That file is not a Bear Bite backup");
+      if (!confirm("Replace everything in the editor with this file? You can still leave without saving.")) return;
+      content = d; content.promotions = content.promotions || []; content.gallery = content.gallery || [];
+      markDirty(); tab = "menu"; render(); toast("Loaded. Press Save changes to publish.");
+    } catch (e) { toast(e.message || "Could not read that file"); }
+    restoreInput.value = "";
+  });
   return [
     h("div", { class: "card" }, h("h2", {}, "Change password"),
       h("label", {}, "Current password", cur), h("label", {}, "New password", h("small", {}, "At least 8 characters"), n1), h("label", {}, "Repeat new password", n2),
@@ -209,8 +226,9 @@ function panelAccount() {
       h("div", { class: "row" }, h("button", { class: "btn ghost", type: "button", onclick: async () => {
         try { const r = await api("POST", "/api/admin/recovery", { current: cur2.value }); cur2.value = ""; keyBox.replaceChildren(h("p", {}, "Save this now. It is shown only once."), h("div", { class: "key" }, r.recoveryKey)); } catch (e) { toast(e.message); }
       } }, "Make new recovery key"))),
-    h("div", { class: "card" }, h("h2", {}, "Backup"), h("p", {}, "Download all menu, promotions and details as a file. Do this now and then."),
-      h("div", { class: "row" }, h("a", { class: "btn ghost", href: "/api/admin/backup", download: "bear-bite-backup.json" }, "Download backup"))),
+    h("div", { class: "card" }, h("h2", {}, "Backup and restore"), h("p", {}, "Download everything (menu, promotions, details) as a file, or load a saved file back. Loading only fills the editor. Nothing changes on the website until you press Save."),
+      h("div", { class: "row" }, h("a", { class: "btn ghost", href: "/api/admin/backup", download: "bear-bite-backup.json" }, "Download backup"),
+        restoreInput, h("button", { class: "btn ghost", type: "button", onclick: () => restoreInput.click() }, "Load from file"))),
   ];
 }
 

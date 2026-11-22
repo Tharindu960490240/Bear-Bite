@@ -21,20 +21,71 @@ const DEFAULTS = {
   status: { override: "auto", message: "" },
   announcement: { enabled: false, text: "" },
   categories: [
-    { id: "c1", name: "Burgers", items: [
-      { id: "i1", name: "Classic Bear Burger", desc: "Beef patty, cheese, lettuce, tomato, house sauce.", price: "", image: "", popular: true, soldOut: false, hidden: false },
-      { id: "i2", name: "Double Grizzly", desc: "Two patties, double cheese, pickles.", price: "", image: "", popular: true, soldOut: false, hidden: false },
-      { id: "i3", name: "Crispy Chicken Burger", desc: "Crunchy chicken, slaw, mayo.", price: "", image: "", popular: false, soldOut: false, hidden: false } ] },
-    { id: "c2", name: "Sides", items: [
-      { id: "i4", name: "Hot Chips", desc: "Golden and salted.", price: "", image: "", popular: false, soldOut: false, hidden: false },
-      { id: "i5", name: "Onion Rings", desc: "Crisp, thick cut.", price: "", image: "", popular: false, soldOut: false, hidden: false },
-      { id: "i6", name: "Nuggets (6)", desc: "With a dipping sauce.", price: "", image: "", popular: false, soldOut: false, hidden: false } ] },
-    { id: "c3", name: "Drinks", items: [
-      { id: "i7", name: "Soft Drink", desc: "Ask for today's flavours.", price: "", image: "", popular: false, soldOut: false, hidden: false },
-      { id: "i8", name: "Milkshake", desc: "Chocolate, vanilla or strawberry.", price: "", image: "", popular: false, soldOut: false, hidden: false } ] },
-    { id: "c4", name: "Sweets", items: [
-      { id: "i9", name: "Honey Waffle", desc: "Warm waffle drizzled with honey.", price: "", image: "", popular: true, soldOut: false, hidden: false },
-      { id: "i10", name: "Choc Brownie", desc: "Rich and gooey.", price: "", image: "", popular: false, soldOut: false, hidden: false } ] }],
+    { id: "c1", name: "Rice & Curry", icon: "curry", items: [
+      { id: "i1", name: "Vegetable Rice & Curry", desc: "", price: "450", priceL: "", image: "", popular: false, soldOut: false, hidden: false },
+      { id: "i2", name: "Egg Rice & Curry", desc: "", price: "500", priceL: "", image: "", popular: false, soldOut: false, hidden: false },
+      { id: "i3", name: "Chicken Rice & Curry", desc: "", price: "550", priceL: "", image: "", popular: false, soldOut: false, hidden: false },
+      { id: "i4", name: "Pork Rice & Curry", desc: "", price: "900", priceL: "", image: "", popular: false, soldOut: false, hidden: false } ] },
+    { id: "c2", name: "Rice", icon: "rice", items: [
+      { id: "i5", name: "Bear Bite Vegetable Rice", desc: "", price: "700", priceL: "1100", image: "", popular: false, soldOut: false, hidden: false },
+      { id: "i6", name: "Bear Bite Chicken Rice", desc: "", price: "900", priceL: "1300", image: "", popular: true, soldOut: false, hidden: false },
+      { id: "i7", name: "Bear Bite Seafood Rice", desc: "", price: "1300", priceL: "1700", image: "", popular: false, soldOut: false, hidden: false },
+      { id: "i8", name: "Egg and Onion Rice", desc: "", price: "850", priceL: "1200", image: "", popular: false, soldOut: false, hidden: false },
+      { id: "i9", name: "Mixed Chopsuey Rice", desc: "", price: "2300", priceL: "", image: "", popular: false, soldOut: false, hidden: false },
+      { id: "i10", name: "Nasi Goreng", desc: "", price: "1500", priceL: "", image: "", popular: false, soldOut: false, hidden: false } ] },
+    { id: "c3", name: "Noodles", icon: "noodles", items: [
+      { id: "i11", name: "Bear Bite Vegetable Noodles", desc: "", price: "700", priceL: "1050", image: "", popular: false, soldOut: false, hidden: false },
+      { id: "i12", name: "Bear Bite Chicken Noodles", desc: "", price: "950", priceL: "1300", image: "", popular: false, soldOut: false, hidden: false },
+      { id: "i13", name: "Bear Bite Seafood Noodles", desc: "", price: "1300", priceL: "1750", image: "", popular: false, soldOut: false, hidden: false },
+      { id: "i14", name: "Chinese Mixed Noodles", desc: "", price: "1250", priceL: "1650", image: "", popular: false, soldOut: false, hidden: false } ] },
+    { id: "c4", name: "Appetizer", icon: "roll", items: [
+      { id: "i15", name: "Chicken Spring Rolls (4 pcs)", desc: "", price: "300", priceL: "", image: "", popular: false, soldOut: false, hidden: false },
+      { id: "i16", name: "Cuttlefish (3 pcs)", desc: "", price: "200", priceL: "", image: "", popular: false, soldOut: false, hidden: false },
+      { id: "i17", name: "Egg Rolls", desc: "", price: "100", priceL: "", image: "", popular: false, soldOut: false, hidden: false },
+      { id: "i18", name: "Parata", desc: "", price: "60", priceL: "", image: "", popular: false, soldOut: false, hidden: false },
+      { id: "i19", name: "Egg Roti", desc: "", price: "120", priceL: "", image: "", popular: false, soldOut: false, hidden: false },
+      { id: "i20", name: "Hopper", desc: "", price: "40", priceL: "", image: "", popular: false, soldOut: false, hidden: false },
+      { id: "i21", name: "Egg Hopper", desc: "", price: "100", priceL: "", image: "", popular: false, soldOut: false, hidden: false } ] },
+    { id: "c5", name: "Omelette", icon: "egg", items: [
+      { id: "i22", name: "Plain Omelette", desc: "", price: "300", priceL: "", image: "", popular: false, soldOut: false, hidden: false },
+      { id: "i23", name: "Cheese Omelette", desc: "", price: "500", priceL: "", image: "", popular: false, soldOut: false, hidden: false },
+      { id: "i24", name: "Cheese and Chicken Omelette", desc: "", price: "650", priceL: "", image: "", popular: false, soldOut: false, hidden: false },
+      { id: "i25", name: "Bear Bite Spicy Sri Lankan Omelette", desc: "", price: "650", priceL: "", image: "", popular: true, soldOut: false, hidden: false } ] },
+    { id: "c6", name: "Chicken", icon: "chicken", items: [
+      { id: "i26", name: "Black Pepper Chicken", desc: "", price: "1350", priceL: "", image: "", popular: false, soldOut: false, hidden: false },
+      { id: "i27", name: "Chicken Devilled", desc: "", price: "1350", priceL: "", image: "", popular: false, soldOut: false, hidden: false },
+      { id: "i28", name: "Chilli Chicken", desc: "", price: "1350", priceL: "", image: "", popular: false, soldOut: false, hidden: false } ] },
+    { id: "c7", name: "Bear Bite Chicken", icon: "bear", items: [
+      { id: "i29", name: "Set Menu", desc: "", price: "850", priceL: "1000", image: "", popular: false, soldOut: false, hidden: false },
+      { id: "i30", name: "Chicken Fried Rice Budget Pack", desc: "", price: "400", priceL: "", image: "", popular: false, soldOut: false, hidden: false } ] },
+    { id: "c8", name: "Fish", icon: "fish", items: [
+      { id: "i31", name: "Fish Devilled", desc: "", price: "1200", priceL: "", image: "", popular: false, soldOut: false, hidden: false },
+      { id: "i32", name: "Fish Fry", desc: "", price: "400", priceL: "", image: "", popular: false, soldOut: false, hidden: false } ] },
+    { id: "c9", name: "Prawns", icon: "prawn", items: [
+      { id: "i33", name: "Hot Butter Prawns", desc: "", price: "1500", priceL: "", image: "", popular: false, soldOut: false, hidden: false },
+      { id: "i34", name: "Prawns Devilled", desc: "", price: "1600", priceL: "", image: "", popular: false, soldOut: false, hidden: false } ] },
+    { id: "c10", name: "Cuttlefish", icon: "squid", items: [
+      { id: "i35", name: "Hot Butter Cuttlefish", desc: "", price: "1600", priceL: "", image: "", popular: false, soldOut: false, hidden: false },
+      { id: "i36", name: "Cuttlefish Devilled", desc: "", price: "1600", priceL: "", image: "", popular: false, soldOut: false, hidden: false } ] },
+    { id: "c11", name: "Pork", icon: "pork", items: [
+      { id: "i37", name: "Black Pork Curry", desc: "", price: "1700", priceL: "", image: "", popular: false, soldOut: false, hidden: false },
+      { id: "i38", name: "Pork Devilled", desc: "", price: "1700", priceL: "", image: "", popular: false, soldOut: false, hidden: false },
+      { id: "i39", name: "Black Pepper Pork", desc: "", price: "1700", priceL: "", image: "", popular: false, soldOut: false, hidden: false } ] },
+    { id: "c12", name: "Vegetable", icon: "veg", items: [
+      { id: "i40", name: "Chopsuey", desc: "", price: "800", priceL: "", image: "", popular: false, soldOut: false, hidden: false },
+      { id: "i41", name: "Bold Vegetable", desc: "", price: "600", priceL: "", image: "", popular: false, soldOut: false, hidden: false } ] },
+    { id: "c13", name: "Kottu", icon: "kottu", items: [
+      { id: "i42", name: "Bear Bite Vegetable Kottu", desc: "", price: "650", priceL: "1000", image: "", popular: false, soldOut: false, hidden: false },
+      { id: "i43", name: "Bear Bite Special Chicken Kottu", desc: "", price: "950", priceL: "1400", image: "", popular: true, soldOut: false, hidden: false },
+      { id: "i44", name: "Bear Bite Cheese Kottu", desc: "", price: "1050", priceL: "1600", image: "", popular: true, soldOut: false, hidden: false },
+      { id: "i45", name: "Bear Bite Cheese Chicken Kottu", desc: "", price: "1250", priceL: "1750", image: "", popular: false, soldOut: false, hidden: false },
+      { id: "i46", name: "Bear Bite Nai Miris Kottu", desc: "", price: "900", priceL: "1250", image: "", popular: false, soldOut: false, hidden: false },
+      { id: "i47", name: "Mixed Kottu", desc: "", price: "1300", priceL: "1850", image: "", popular: false, soldOut: false, hidden: false },
+      { id: "i48", name: "Seafood Kottu", desc: "", price: "1300", priceL: "1850", image: "", popular: false, soldOut: false, hidden: false },
+      { id: "i49", name: "Egg Kottu", desc: "", price: "750", priceL: "1100", image: "", popular: false, soldOut: false, hidden: false },
+      { id: "i50", name: "Idiyappam Chicken Kottu", desc: "", price: "950", priceL: "1300", image: "", popular: false, soldOut: false, hidden: false },
+      { id: "i51", name: "Idiyappam Seafood Kottu", desc: "", price: "1300", priceL: "1850", image: "", popular: false, soldOut: false, hidden: false },
+      { id: "i52", name: "Idiyappam Mixed Kottu", desc: "", price: "1300", priceL: "1850", image: "", popular: false, soldOut: false, hidden: false } ] }],
   promotions: [{ id: "p1", title: "Sample promotion", text: "Edit or delete this in the admin panel.", badge: "New", image: "", start: "", end: "", active: false }],
   gallery: []
 };
@@ -104,9 +155,9 @@ function validate(input) {
   if (!Array.isArray(c.hours) || c.hours.length !== 7) c.hours = D.hours;
   c.hours = c.hours.map((h, i) => ({ day: DAYS[i], open: /^\d\d:\d\d$/.test(h.open) ? h.open : "10:00", close: /^\d\d:\d\d$/.test(h.close) ? h.close : "21:00", closed: !!h.closed }));
   if (!Array.isArray(c.categories) || !Array.isArray(c.promotions) || !Array.isArray(c.gallery)) return null;
-  c.categories = c.categories.map(cat => ({ id: String(cat.id || uid()), name: String(cat.name || "Untitled"),
+  c.categories = c.categories.map(cat => ({ id: String(cat.id || uid()), name: String(cat.name || "Untitled"), icon: /^[a-z]{1,12}$/.test(cat.icon) ? cat.icon : "",
     items: (Array.isArray(cat.items) ? cat.items : []).map(i => ({ id: String(i.id || uid()), name: String(i.name || "Untitled"), desc: String(i.desc || ""),
-      price: String(i.price == null ? "" : i.price), image: okImg(i.image) ? i.image : "", popular: !!i.popular, soldOut: !!i.soldOut, hidden: !!i.hidden })) }));
+      price: String(i.price == null ? "" : i.price), priceL: String(i.priceL == null ? "" : i.priceL), image: okImg(i.image) ? i.image : "", popular: !!i.popular, soldOut: !!i.soldOut, hidden: !!i.hidden })) }));
   c.promotions = c.promotions.map(p => ({ id: String(p.id || uid()), title: String(p.title || "Untitled"), text: String(p.text || ""), badge: String(p.badge || ""),
     image: okImg(p.image) ? p.image : "", start: /^\d{4}-\d\d-\d\d$/.test(p.start) ? p.start : "", end: /^\d{4}-\d\d-\d\d$/.test(p.end) ? p.end : "", active: !!p.active }));
   c.gallery = c.gallery.filter(g => okImg(g.url) && g.url).map(g => ({ id: String(g.id || uid()), url: g.url, caption: String(g.caption || "") }));
