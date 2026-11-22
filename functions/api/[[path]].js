@@ -23,9 +23,18 @@ const DEFAULTS = {
   categories: [
     { id: "c1", name: "Burgers", items: [
       { id: "i1", name: "Classic Bear Burger", desc: "Beef patty, cheese, lettuce, tomato, house sauce.", price: "", image: "", popular: true, soldOut: false, hidden: false },
-      { id: "i2", name: "Crispy Chicken Burger", desc: "Crunchy chicken, slaw, mayo.", price: "", image: "", popular: false, soldOut: false, hidden: false }] },
-    { id: "c2", name: "Sides", items: [{ id: "i3", name: "Hot Chips", desc: "Golden and salted.", price: "", image: "", popular: false, soldOut: false, hidden: false }] },
-    { id: "c3", name: "Drinks", items: [{ id: "i4", name: "Milkshake", desc: "Chocolate, vanilla or strawberry.", price: "", image: "", popular: false, soldOut: false, hidden: false }] }],
+      { id: "i2", name: "Double Grizzly", desc: "Two patties, double cheese, pickles.", price: "", image: "", popular: true, soldOut: false, hidden: false },
+      { id: "i3", name: "Crispy Chicken Burger", desc: "Crunchy chicken, slaw, mayo.", price: "", image: "", popular: false, soldOut: false, hidden: false } ] },
+    { id: "c2", name: "Sides", items: [
+      { id: "i4", name: "Hot Chips", desc: "Golden and salted.", price: "", image: "", popular: false, soldOut: false, hidden: false },
+      { id: "i5", name: "Onion Rings", desc: "Crisp, thick cut.", price: "", image: "", popular: false, soldOut: false, hidden: false },
+      { id: "i6", name: "Nuggets (6)", desc: "With a dipping sauce.", price: "", image: "", popular: false, soldOut: false, hidden: false } ] },
+    { id: "c3", name: "Drinks", items: [
+      { id: "i7", name: "Soft Drink", desc: "Ask for today's flavours.", price: "", image: "", popular: false, soldOut: false, hidden: false },
+      { id: "i8", name: "Milkshake", desc: "Chocolate, vanilla or strawberry.", price: "", image: "", popular: false, soldOut: false, hidden: false } ] },
+    { id: "c4", name: "Sweets", items: [
+      { id: "i9", name: "Honey Waffle", desc: "Warm waffle drizzled with honey.", price: "", image: "", popular: true, soldOut: false, hidden: false },
+      { id: "i10", name: "Choc Brownie", desc: "Rich and gooey.", price: "", image: "", popular: false, soldOut: false, hidden: false } ] }],
   promotions: [{ id: "p1", title: "Sample promotion", text: "Edit or delete this in the admin panel.", badge: "New", image: "", start: "", end: "", active: false }],
   gallery: []
 };

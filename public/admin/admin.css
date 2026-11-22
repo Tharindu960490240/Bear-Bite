@@ -13,7 +13,7 @@ label small{font-weight:400;color:var(--muted)}
 input[type=text],input[type=password],input[type=email],input[type=url],input[type=time],input[type=date],input[type=number],select,textarea{width:100%;padding:.65rem .8rem;border:1px solid var(--line);border-radius:12px;background:var(--bg);font-weight:400}
 textarea{min-height:72px;resize:vertical}
 input:focus,select:focus,textarea:focus{border-color:var(--accent);outline:0;box-shadow:0 0 0 3px rgba(217,138,31,.25)}
-.btn{border:0;cursor:pointer;padding:.65rem 1.2rem;border-radius:999px;font-weight:600;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;transition:.15s}
+.btn{border:0;cursor:pointer;padding:.65rem 1.2rem;border-radius:999px;font-weight:600;background:linear-gradient(135deg,var(--accent),#f2b84a);color:#2a1507;transition:.15s}
 .btn:hover{filter:brightness(1.05)}.btn:disabled{opacity:.5;cursor:default}
 .btn.ghost{background:transparent;color:var(--text);border:1px solid var(--line)}
 .btn.danger{background:transparent;color:var(--red);border:1px solid var(--red)}

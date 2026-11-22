@@ -1,6 +1,6 @@
 {
   "name": "bear-bite",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "private": true,
   "scripts": {
     "dev": "wrangler pages dev public --kv BB --binding ADMIN_SETUP_CODE=BEAR1234",

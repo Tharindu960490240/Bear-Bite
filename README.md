@@ -1,4 +1,4 @@
-# Bear Bite website + admin (Cloudflare Pages)
+# Bear Bite website + admin (Cloudflare Pages), final version
 
 Static website in `public/`, API in `functions/`. Menu, promotions, details, photos and the admin password are stored in
 Cloudflare KV (free tier, no credit card). There is nothing to build.
@@ -28,6 +28,15 @@ Custom domain: Project > Custom domains > Set up a domain.
     npx wrangler login
     npm run deploy
 Then do steps 4 to 6 in the dashboard.
+
+## Starter data
+Until the admin presses Save for the first time, the site shows the starter menu (Burgers, Sides, Drinks, Sweets),
+the phone number, address and opening hours from the original design. Prices are blank on purpose, so no price is shown.
+To go back to the starter data later: Cloudflare > Storage & Databases > KV > bear-bite > View > delete the key named `content`.
+
+## Updating an already deployed site
+Replace the files in your GitHub repository with the ones in this folder (keep the folder layout). Cloudflare redeploys
+by itself. Your menu, photos and password stay safe in KV.
 
 ## Forgot the password
 - Click "Forgot password?" on the login page and enter the recovery key. Or
