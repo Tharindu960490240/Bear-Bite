@@ -1,0 +1,10 @@
+{
+  "name": "bear-bite",
+  "version": "3.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "wrangler pages dev public --kv BB --binding ADMIN_SETUP_CODE=BEAR1234",
+    "deploy": "wrangler pages deploy public --project-name bear-bite"
+  },
+  "devDependencies": { "wrangler": "^4" }
+}
